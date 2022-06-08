@@ -1,4 +1,5 @@
 const Chore = require("../models/chore.model");
+const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const SECRET = process.env.JWT_SECRET;
@@ -6,7 +7,7 @@ const SECRET = process.env.JWT_SECRET;
 module.exports = {
   getChores: (req, res) => {
     Chore.find({})
-      .populate("createdBy", "firstName lastName email")
+      .populate("createdBy", "firstName lastName")
       .then((chores) => {
         res.json(chores);
       })
@@ -32,6 +33,7 @@ module.exports = {
   },
   getChoreById: (req, res) => {
     Chore.findOne({ _id: req.params.id })
+      .populate("createdBy", "firstName lastName")
       .then((chore) => {
         res.json(chore);
       })

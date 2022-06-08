@@ -25,7 +25,6 @@ const DetailView = () => {
         <p className="text-gray-700 text-base my-4">Description: {chore.description}</p>
         <p className="text-gray-700 text-base my-4">Location: {chore.location}</p>
         <p className="text-gray-700 text-base my-4">Create Date: {chore.createdAt}</p>
-        <p></p>
         <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Add to my Jobs</button>
       </div>
   </div> 

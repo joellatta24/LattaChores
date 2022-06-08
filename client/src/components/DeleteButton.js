@@ -15,7 +15,7 @@ const DeleteButton = (props) => {
   }
   return (
     <div>
-        <button onClick={onClickHandler} className="mx-2 w-12 h-7">Cancel</button>
+        <button onClick={onClickHandler} className="mx-2 w-12 h-7 hover:bg-transparent hover:text-black">Cancel</button>
     </div>
   )
 }

@@ -25,13 +25,14 @@ const Register = (props) => {
       .then((res) => {
         console.log("res", res.data);
         setIsLoggedIn(true);
+        navigate("/dashboard");
       })
       .catch((err) => {
+        navigate("/");
         console.log("Error in registration", err);
         setErrors(err.response.data.error.errors);
         console.log(errors);
       });
-    navigate("/dashboard");
   };
   return (
     <div className="w-full max-w-xs">

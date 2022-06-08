@@ -42,7 +42,7 @@ const Header = (props) => {
         {user ? (
           <div className="flex w-full justify-center items-center mt-2">
             <p className="text-white mr-4 text-xl">Welcome back, {user.firstName}!</p>
-            <NavLink to="/dashboard" className={'bg-gray-700 text-white px-8 py-3 mr-4 rounded-md hover:bg-transparent hover:text-indigo-600'}>
+            <NavLink to="/dashboard" className={'bg-gray-700 text-white px-8 py-3 mr-4 rounded-md hover:text-indigo-600'}>
               Home
             </NavLink>
             <button className="bg-gray-700 text-white px-8 py-3 mr-4" onClick={handleCreate}>Add Job</button>
