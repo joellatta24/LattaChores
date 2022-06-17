@@ -6,7 +6,7 @@ import "../App.css";
 const Main = (props) => {
   const { setIsLoggedIn } = props;
   return (
-    <div className="flex justify-center items-center pt-5 w-full h-full">
+    <div className="flex justify-center items-center pt-5 w-full h-full ">
       <div className="flex w-80">
         <Register setIsLoggedIn={setIsLoggedIn} />
       </div>

@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
-import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { TrashIcon } from "@heroicons/react/solid";
 
 const Header = (props) => {
   const [user, setUser] = useState(null);
@@ -34,27 +34,33 @@ const Header = (props) => {
   };
 
   return (
-    <div className="bg-indigo-600 h-20 justify-evenly flex drop-shadow-lg">
-      <div className="items-center mt-2">
-        <h1 className="text-white text-3xl text-center mt-1">Latta Chores</h1>
+    <div className="bg-indigo-600 w-[100%] h-20 justify-between flex drop-shadow-lg items-center">
+      <div className="items-center ml-6 flex">
+        <TrashIcon className="text-white h-10 w-10" />
+        <h1 className="text-white text-3xl text-center ml-4 mt-1">
+          Latta Chores
+        </h1>
       </div>
       <div>
         {user ? (
-          <div className="flex w-full justify-center items-center mt-2">
-            <p className="text-white mr-4 text-xl">Welcome back, {user.firstName}!</p>
-            <NavLink to="/dashboard" className={'bg-gray-700 text-white px-8 py-3 mr-4 rounded-md hover:text-indigo-600'}>
-              Home
-            </NavLink>
-            <button className="bg-gray-700 text-white px-8 py-3 mr-4" onClick={handleCreate}>Add Job</button>
-            <button className="bg-gray-700 text-white px-8 py-3 mr-4" onClick={handleLogout}>Logout</button>
+          <div className="flex w-full mr-2 items-center">
+            <p className="text-white mr-4 text-lg">
+              Welcome back, {user.firstName}!
+            </p>
+            <button
+              className="bg-gray-700 text-white px-2 py-1 mr-4 text-md"
+              onClick={handleCreate}
+            >
+              Add Chore
+            </button>
+            <button
+              className="bg-gray-700 text-white px-2 py-1 mr-4 text-md"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
           </div>
-        ) : (
-          <div className="mt-5">
-            <NavLink to="/" className={'bg-gray-700 text-white px-8 py-3 mr-4 rounded-md hover:bg-transparent hover:text-indigo-600'}>
-              Home
-            </NavLink>
-          </div>
-        )}
+        ) : null}
       </div>
     </div>
   );

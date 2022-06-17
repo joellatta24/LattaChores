@@ -28,10 +28,9 @@ const Register = (props) => {
         navigate("/dashboard");
       })
       .catch((err) => {
-        navigate("/");
-        console.log("Error in registration", err);
-        setErrors(err.response.data.error.errors);
-        console.log(errors);
+        console.log("Error in registration", err.response);
+        setErrors(err.response.data.errors);
+        console.log("register error:", errors);
       });
   };
   return (
@@ -40,10 +39,10 @@ const Register = (props) => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
-        <h3 className="text-2xl text-center mb-4">Register</h3>
+        <h3 className="text-2xl text-center mb-4">Create Account</h3>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-sm mb-2"
             htmlFor="firstName"
           >
             First Name:{" "}
@@ -61,7 +60,7 @@ const Register = (props) => {
 
         <div>
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-sm mb-2"
             htmlFor="lastName"
           >
             Last Name:{" "}
@@ -78,10 +77,7 @@ const Register = (props) => {
         </div>
 
         <div>
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="email"
-          >
+          <label className="block text-gray-700 text-sm mb-2" htmlFor="email">
             Email:
           </label>
           <input
@@ -97,7 +93,7 @@ const Register = (props) => {
 
         <div>
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-sm mb-2"
             htmlFor="password"
           >
             Password:
@@ -115,7 +111,7 @@ const Register = (props) => {
 
         <div>
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-sm mb-2"
             htmlFor="confirmPassword"
           >
             Confirm Password:{" "}
@@ -132,7 +128,7 @@ const Register = (props) => {
         </div>
         <br />
         <button
-          className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-2 rounded focus:outline-none focus:shadow-outline"
           type="submit"
         >
           Register

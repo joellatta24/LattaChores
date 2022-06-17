@@ -19,8 +19,9 @@ const ChoreSchema = new mongoose.Schema(
     },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref:'User',
-    }
+      ref: "User",
+    },
+    claimed: {type: Boolean, default:false}
   },
   {
     timestamps: true,

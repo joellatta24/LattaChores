@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const SECRET = process.env.JWT_SECRET;
+const Chore = require("../models/chore.model");
 
 const register = async (req, res) => {
   try {
@@ -17,6 +18,7 @@ const register = async (req, res) => {
       },
       SECRET
     );
+    console.log("Testing here!");
     res
       .status(201)
       .cookie("userToken", userToken, {
@@ -33,14 +35,14 @@ const register = async (req, res) => {
       });
   } catch (e) {
     console.log("Error Creating User", e);
-    res.json(e);
+    res.status(400).json(e);
   }
 };
 
 const login = async (req, res) => {
   const userDoc = await User.findOne({ email: req.body.email });
   if (!userDoc) {
-    res.status(400).json({ message: "Invalid Login" });
+    res.status(400).json({ message: "Invalid Login!" });
   } else {
     try {
       const isPasswordValid = await bcrypt.compare(
@@ -98,9 +100,59 @@ const getLoggedInUser = async (req, res) => {
   }
 };
 
+const updateUsersWithChores = (req, res) => {
+  const user = jwt.verify(req.cookies.userToken, SECRET);
+  console.log("This is the console log!", user);
+  User.findByIdAndUpdate(
+    { _id: user._id },
+    { $push: { claimedChores: [req.body.choreId] } },
+    {
+      new: true,
+      runValidators: true,
+    }
+  )
+    .populate("claimedChores", "_id title description location")
+    .then((user) => {
+      // console.log( user);
+      Chore.findByIdAndUpdate(
+        { _id: req.body.choreId },
+        { claimed: true }
+      ).then((user) => {
+        // console.log(user);
+        res.json(user);
+      });
+    })
+    .catch((err) => {
+      console.log("error message", err);
+      res.status(400).json({
+        message: "Something went wrong claiming a chore.",
+        error: err,
+      });
+    });
+};
+
+const getUserClaimedChores = (req, res) => {
+  const user = jwt.verify(req.cookies.userToken, SECRET);
+  User.findById(user._id)
+    .populate("claimedChores", "_id title description location")
+    .then((user) => {
+      console.log("Success!");
+      res.json(user);
+    })
+    .catch((err) => {
+      console.log("error message", err);
+      res.status(400).json({
+        message: "Something went wrong claiming a chore.",
+        error: err,
+      });
+    });
+};
+
 module.exports = {
   register,
   login,
   logout,
   getLoggedInUser,
+  updateUsersWithChores,
+  getUserClaimedChores,
 };

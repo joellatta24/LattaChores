@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-const DeleteButton = (props) => {
+const CompleteButton = (props) => {
   const { id, handleDelete } = props;
   const onClickHandler = (e) => {
     axios
@@ -18,12 +18,12 @@ const DeleteButton = (props) => {
     <div>
       <button
         onClick={onClickHandler}
-        className="mx-2 w-12 h-7 hover:bg-transparent hover:text-black border-slate-200"
+        className="mx-2 w-20 h-7 hover:bg-transparent border-slate-200 hover:text-black"
       >
-        Cancel
+        Complete
       </button>
     </div>
   );
 };
 
-export default DeleteButton;
+export default CompleteButton;

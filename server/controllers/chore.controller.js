@@ -1,12 +1,11 @@
 const Chore = require("../models/chore.model");
-const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const SECRET = process.env.JWT_SECRET;
 
 module.exports = {
   getChores: (req, res) => {
-    Chore.find({})
+    Chore.find({ claimed: false })
       .populate("createdBy", "firstName lastName")
       .then((chores) => {
         res.json(chores);
@@ -44,12 +43,15 @@ module.exports = {
         });
       });
   },
+
   updateChore: (req, res) => {
-    Chore.findOneAndUpdate(req.params.id, req.body, {
+    console.log("Logging the Params ID", req.params.id);
+    Chore.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     })
       .then((chore) => {
+        console.log("Chore Object", chore);
         res.json(chore);
       })
       .catch((err) => {
@@ -59,6 +61,7 @@ module.exports = {
         });
       });
   },
+
   deleteChore: (req, res) => {
     Chore.deleteOne({ _id: req.params.id })
       .then((chore) => {

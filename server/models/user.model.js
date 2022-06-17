@@ -23,6 +23,7 @@ const UserSchema = new mongoose.Schema(
       required: [true, "Password is required!"],
       minlength: [8, "Password must be at least 8 characters!"],
     },
+    claimedChores: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chore" }],
   },
   {
     timestamps: true,
@@ -47,6 +48,7 @@ UserSchema.pre("save", async function (next) {
     next();
   } catch (e) {
     console.log("Error in Hashing", e);
+    next(e.message);
   }
 });
 
