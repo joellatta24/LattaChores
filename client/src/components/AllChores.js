@@ -20,7 +20,7 @@ const AllChores = (props) => {
       <br />
       <h4 className="text-xl">All Chores:</h4>
       <br />
-      <table className="min-w-full block p-2 rounded shadow-lg bg-white max-w-sm">
+      <table className="min-w-full block p-2 rounded shadow-lg bg-white max-w-sm w-[80%]">
         <thead className="bg-white border-b">
           <tr>
             <th

@@ -26,7 +26,7 @@ const IndexView = () => {
       <div className="overflow-hidden w-[40%]">
         <AllChores handleDelete={handleDelete} chores={chores} />
       </div>
-      <div className="overflow-hidden w-[30%] ">
+      <div className="overflow-hidden w-[30%]">
         <MyJobs handleDelete={handleDelete} chores={chores} />
       </div>
     </div>

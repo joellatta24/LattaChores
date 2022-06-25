@@ -26,7 +26,7 @@ function App() {
         </div>
       </BrowserRouter>
       <br />
-      <Footer />
+      {/* <Footer  */}
     </div>
   );
 }

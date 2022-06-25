@@ -50,7 +50,7 @@ const login = async (req, res) => {
         userDoc.password
       );
       if (!isPasswordValid) {
-        res.status(400).json({ message: "Invalid Login" });
+        res.status(400).json({ message: "Invalid Login!" });
       } else {
         const userToken = jwt.sign(
           {
