@@ -6,7 +6,7 @@ import DetailView from "./views/DetailView";
 import CreateView from "./views/CreateView";
 import IndexView from "./views/IndexView";
 import EditView from "./views/EditView";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
